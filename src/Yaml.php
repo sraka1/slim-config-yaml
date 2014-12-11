@@ -152,6 +152,10 @@ class Yaml
 
 	protected function parseParameters($content, $resource)
 	{
+		$parameters = self::$global_parameters;
+        self::$parameters[$resource]->add($parameters);
+        self::$parameters[$resource]->resolve();
+
 		if (isset($content['parameters'])) {
 			$parameters = array_merge($content['parameters'], self::$global_parameters);
 
